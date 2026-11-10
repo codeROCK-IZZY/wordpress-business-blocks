@@ -1,0 +1,9 @@
+parameters:
+	level: 8
+	paths:
+		- business-blocks.php
+		- includes
+		- eval
+	excludePaths:
+		- eval/a11y.py
+	treatPhpDocTypesAsCertain: false

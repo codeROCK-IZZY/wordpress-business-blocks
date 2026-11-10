@@ -1,0 +1,48 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "business-blocks/testimonials",
+	"version": "1.0.0",
+	"title": "Testimonials",
+	"category": "business-blocks",
+	"icon": "format-quote",
+	"description": "Customer quotes with names and roles. No review structured data: search engines ignore self-published reviews.",
+	"keywords": [
+		"testimonials",
+		"reviews",
+		"quotes"
+	],
+	"textdomain": "business-blocks",
+	"attributes": {
+		"items": {
+			"type": "array",
+			"items": {
+				"type": "object"
+			},
+			"default": [
+				{
+					"quote": "",
+					"name": "",
+					"role": ""
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"color": {
+			"text": true,
+			"background": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

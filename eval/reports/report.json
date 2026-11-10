@@ -1,0 +1,94 @@
+{
+    "structured_data": {
+        "cases": 2000,
+        "broken": 0
+    },
+    "hours": {
+        "checks": 59600,
+        "mismatches": 0,
+        "parity": 3600
+    },
+    "weight": {
+        "business-hours": {
+            "css_gz": 406,
+            "view_js_gz": 1081,
+            "editor_gz": 1675
+        },
+        "call-to-action": {
+            "css_gz": 219,
+            "view_js_gz": 0,
+            "editor_gz": 1037
+        },
+        "faq": {
+            "css_gz": 389,
+            "view_js_gz": 0,
+            "editor_gz": 1409
+        },
+        "pricing-table": {
+            "css_gz": 413,
+            "view_js_gz": 0,
+            "editor_gz": 1372
+        },
+        "team-member": {
+            "css_gz": 201,
+            "view_js_gz": 0,
+            "editor_gz": 1090
+        },
+        "testimonials": {
+            "css_gz": 316,
+            "view_js_gz": 0,
+            "editor_gz": 1034
+        }
+    },
+    "a11y": {
+        "violations": [],
+        "passes": 16,
+        "incomplete": [],
+        "blocks": 6,
+        "faq_keyboard": true
+    },
+    "checks": [
+        {
+            "check": "FAQ JSON-LD that breaks out of its script or is invalid, hostile input",
+            "value": "0 \/ 2000",
+            "target": "= 0",
+            "pass": true
+        },
+        {
+            "check": "\"Open now\" disagreements with the reference, 8 zones incl. DST changes",
+            "value": "0 \/ 59,600",
+            "target": "= 0",
+            "pass": true
+        },
+        {
+            "check": "Browser and PHP agree on generated cases (Jest)",
+            "value": "3,600 cases",
+            "target": "≥ 3,000",
+            "pass": true
+        },
+        {
+            "check": "Front-end CSS for all six blocks, gzipped",
+            "value": "1944 B",
+            "target": "≤ 3 KB",
+            "pass": true
+        },
+        {
+            "check": "Front-end JavaScript (hours badge only), gzipped",
+            "value": "1081 B",
+            "target": "≤ 2 KB",
+            "pass": true
+        },
+        {
+            "check": "axe-core WCAG 2.1 A\/AA violations in the blocks",
+            "value": 0,
+            "target": "= 0",
+            "pass": true
+        },
+        {
+            "check": "FAQ questions reachable by keyboard",
+            "value": "yes",
+            "target": "yes",
+            "pass": true
+        }
+    ]
+}

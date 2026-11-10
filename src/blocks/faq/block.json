@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "business-blocks/faq",
+	"version": "1.0.0",
+	"title": "FAQ",
+	"category": "business-blocks",
+	"icon": "editor-help",
+	"description": "Questions and answers as an accessible accordion, with FAQPage structured data for search engines.",
+	"keywords": [ "faq", "questions", "accordion" ],
+	"textdomain": "business-blocks",
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{ "question": "", "answer": "" }
+			],
+			"items": { "type": "object" }
+		},
+		"openFirst": { "type": "boolean", "default": false },
+		"schema": { "type": "boolean", "default": true }
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide" ],
+		"spacing": { "margin": true, "padding": true },
+		"color": { "text": true, "background": true }
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,52 @@
+.bb-pricing {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: 1.25rem;
+	align-items: stretch;
+}
+
+.bb-plan {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid color-mix(in srgb, currentcolor 20%, transparent);
+	border-radius: 12px;
+	padding: 1.5rem;
+	position: relative;
+
+	&.is-highlighted {
+		border-width: 2px;
+		border-color: var(--bb-accent, #1f4e79);
+	}
+}
+
+.bb-plan-badge {
+	position: absolute;
+	top: -0.8rem;
+	left: 1.5rem;
+	margin: 0;
+	padding: 0.15rem 0.6rem;
+	border-radius: 999px;
+	background: var(--bb-accent, #1f4e79);
+	color: var(--bb-accent-ink, #fff);
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+.bb-plan-name {
+	margin: 0 0 0.25rem;
+}
+
+.bb-plan-amount {
+	font-size: 2.2rem;
+	font-weight: 700;
+}
+
+.bb-plan-features {
+	flex: 1;
+	margin: 1rem 0;
+	padding-left: 1.2rem;
+}
+
+.bb-plan-button {
+	text-align: center;
+}

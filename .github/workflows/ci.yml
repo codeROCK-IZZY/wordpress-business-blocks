@@ -1,0 +1,108 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  js:
+    name: JavaScript (lint, Jest, build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint:js
+      - run: npm run lint:css
+      - name: Jest (includes 3,600 browser/PHP parity cases for opening hours)
+        run: npm test
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build/
+
+  php:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ["8.1", "8.2", "8.3", "8.4"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - run: composer install --no-interaction --no-progress
+      - if: matrix.php == '8.3'
+        name: WordPress coding standards and PHPStan level 8
+        run: vendor/bin/phpcs && vendor/bin/phpstan analyse --no-progress --memory-limit=1G
+      - run: vendor/bin/phpunit
+
+  integration:
+    name: WordPress ${{ matrix.label }}, axe-core and evaluation
+    needs: js
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: "6.5 (oldest supported)"
+            image: wordpress:6.5-php8.3-apache
+          - label: "latest"
+            image: wordpress:php8.3-apache
+    env:
+      WP_IMAGE: ${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: build/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Let the WordPress containers read the plugin folder
+        run: chmod -R a+rwX .
+      - run: bash tests/integration/run.sh
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: axe-core audit of the rendered blocks
+        run: |
+          pip install playwright==1.48.0
+          python -m playwright install --with-deps chromium
+          python eval/a11y.py node_modules/axe-core/axe.min.js
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          coverage: none
+      - name: Evaluation gate
+        run: php eval/run.php --gate
+      - uses: actions/upload-artifact@v4
+        if: matrix.label == 'latest'
+        with:
+          name: evaluation-report
+          path: eval/reports/
+
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        run: docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:latest git /repo --no-banner

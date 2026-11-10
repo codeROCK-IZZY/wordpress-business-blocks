@@ -1,0 +1,41 @@
+.bb-testimonials {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+	gap: 1.25rem;
+}
+
+.bb-testimonial {
+	margin: 0;
+	padding: 1.5rem;
+	border-radius: 12px;
+	background: color-mix(in srgb, currentcolor 5%, transparent);
+
+	blockquote {
+		margin: 0 0 1rem;
+		padding: 0;
+		border: 0;
+		font-size: 1.05em;
+
+		p::before {
+			content: "\201C";
+		}
+
+		p::after {
+			content: "\201D";
+		}
+	}
+
+	figcaption {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.bb-testimonial-name {
+	font-weight: 600;
+}
+
+.bb-testimonial-role {
+	opacity: 0.75;
+	font-size: 0.9em;
+}

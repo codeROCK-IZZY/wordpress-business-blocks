@@ -1,0 +1,28 @@
+.bb-person {
+	max-width: 22rem;
+	text-align: center;
+}
+
+.bb-person-photo {
+	width: 9rem;
+	height: 9rem;
+	object-fit: cover;
+	border-radius: 50%;
+	display: block;
+	margin: 0 auto 0.75rem;
+}
+
+.bb-person-name {
+	margin: 0;
+}
+
+.bb-person-role {
+	margin: 0.15rem 0 0.75rem;
+	opacity: 0.75;
+}
+
+.bb-person-links {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+}

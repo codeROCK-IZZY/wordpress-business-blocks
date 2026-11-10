@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<ruleset name="business-blocks">
+	<description>WordPress coding standards for the plugin.</description>
+	<file>.</file>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/eval/reports/*</exclude-pattern>
+	<exclude-pattern>/build/*</exclude-pattern>
+	<exclude-pattern>/eval/*.py</exclude-pattern>
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<config name="testVersion" value="8.1-"/>
+	<config name="minimum_wp_version" value="6.5"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Block templates receive $attributes from core; their variables are prefixed bb_. -->
+	<rule ref="WordPress-Extra">
+		<!-- PSR-4 file names (src/Sync/SyncQueue.php) instead of class-sync-queue.php. -->
+		<exclude name="WordPress.Files.FileName"/>
+	</rule>
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="business-blocks"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array" value="business_blocks,BusinessBlocks"/>
+		</properties>
+	</rule>
+
+	<!-- Tests and the offline evaluation are command-line tools, not plugin runtime code. -->
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/eval/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.Security.EscapeOutput">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/eval/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/eval/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Generic.Files.OneObjectStructurePerFile">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/eval/*</exclude-pattern>
+	</rule>
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.DB">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.GlobalVariablesOverride">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/eval/*</exclude-pattern>
+	</rule>
+	<!-- WordPress includes a block's render.php inside WP_Block::render(), so its variables are local to that
+	     call, not globals. They are still prefixed bb_ for readability. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+		<exclude-pattern>/src/blocks/*/render.php</exclude-pattern>
+	</rule>
+</ruleset>

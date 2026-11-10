@@ -1,0 +1,69 @@
+.bb-hours {
+	max-width: 28rem;
+}
+
+.bb-hours-status {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+	font-weight: 600;
+	margin: 0 0 0.75rem;
+
+	&::before {
+		content: "";
+		width: 0.6em;
+		height: 0.6em;
+		border-radius: 50%;
+		background: currentcolor;
+	}
+
+	&.is-open {
+		color: #146c2e;
+	}
+
+	&.is-closed {
+		color: #a4161a;
+	}
+}
+
+.bb-hours-table {
+	width: 100%;
+	border-collapse: collapse;
+
+	th,
+	td {
+		text-align: left;
+		padding: 0.4rem 0;
+		border-bottom: 1px solid color-mix(in srgb, currentcolor 15%, transparent);
+	}
+
+	td {
+		text-align: right;
+	}
+
+	.is-today th,
+	.is-today td {
+		font-weight: 700;
+	}
+}
+
+.bb-hours-closures-title {
+	margin: 1rem 0 0.25rem;
+	font-weight: 600;
+}
+
+.bb-hours-closures {
+	margin: 0;
+	padding-left: 1.2rem;
+}
+
+.bb-hours-edit input[type="time"] {
+	width: 7.5rem;
+}
+
+.bb-closure-edit {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	margin-bottom: 0.5rem;
+}

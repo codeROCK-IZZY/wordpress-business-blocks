@@ -1,0 +1,56 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "business-blocks/call-to-action",
+	"version": "1.0.0",
+	"title": "Call to action",
+	"category": "business-blocks",
+	"icon": "megaphone",
+	"description": "A heading, a line of text and a button, with an optional phone number that is tappable on mobile.",
+	"keywords": [
+		"cta",
+		"call to action",
+		"button",
+		"banner"
+	],
+	"textdomain": "business-blocks",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"text": {
+			"type": "string",
+			"default": ""
+		},
+		"button": {
+			"type": "string",
+			"default": ""
+		},
+		"url": {
+			"type": "string",
+			"default": ""
+		},
+		"phone": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"color": {
+			"text": true,
+			"background": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "business-blocks/team-member",
+	"version": "1.0.0",
+	"title": "Team member",
+	"category": "business-blocks",
+	"icon": "id-alt",
+	"description": "A photo, name, role, short bio and contact links for one person.",
+	"keywords": [
+		"team",
+		"staff",
+		"person",
+		"profile"
+	],
+	"textdomain": "business-blocks",
+	"attributes": {
+		"mediaId": {
+			"type": "number",
+			"default": 0
+		},
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"role": {
+			"type": "string",
+			"default": ""
+		},
+		"bio": {
+			"type": "string",
+			"default": ""
+		},
+		"email": {
+			"type": "string",
+			"default": ""
+		},
+		"linkedin": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"color": {
+			"text": true,
+			"background": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

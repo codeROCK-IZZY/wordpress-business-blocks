@@ -1,0 +1,65 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "business-blocks/pricing-table",
+	"version": "1.0.0",
+	"title": "Pricing table",
+	"category": "business-blocks",
+	"icon": "money-alt",
+	"description": "Plans side by side with features, a highlighted plan and a call to action for each.",
+	"keywords": [
+		"pricing",
+		"plans",
+		"prices"
+	],
+	"textdomain": "business-blocks",
+	"attributes": {
+		"currency": {
+			"type": "string",
+			"default": "$"
+		},
+		"plans": {
+			"type": "array",
+			"items": {
+				"type": "object"
+			},
+			"default": [
+				{
+					"name": "Basic",
+					"price": "29",
+					"period": "month",
+					"features": "1 site\nEmail support",
+					"button": "Choose Basic",
+					"url": "",
+					"highlight": false
+				},
+				{
+					"name": "Pro",
+					"price": "59",
+					"period": "month",
+					"features": "5 sites\nPriority support\nMonthly report",
+					"button": "Choose Pro",
+					"url": "",
+					"highlight": true
+				}
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide"
+		],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"color": {
+			"text": true,
+			"background": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

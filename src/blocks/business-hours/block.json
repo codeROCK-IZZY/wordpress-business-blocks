@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "business-blocks/business-hours",
+	"version": "1.0.0",
+	"title": "Business hours",
+	"category": "business-blocks",
+	"icon": "clock",
+	"description": "Opening hours with a live \"Open now\" badge, holiday closures and LocalBusiness structured data.",
+	"keywords": [ "hours", "opening", "open now", "schedule" ],
+	"textdomain": "business-blocks",
+	"attributes": {
+		"days": {
+			"type": "array",
+			"default": [
+				{ "day": "Monday", "open": "09:00", "close": "17:00", "closed": false },
+				{ "day": "Tuesday", "open": "09:00", "close": "17:00", "closed": false },
+				{ "day": "Wednesday", "open": "09:00", "close": "17:00", "closed": false },
+				{ "day": "Thursday", "open": "09:00", "close": "17:00", "closed": false },
+				{ "day": "Friday", "open": "09:00", "close": "17:00", "closed": false },
+				{ "day": "Saturday", "open": "10:00", "close": "14:00", "closed": false },
+				{ "day": "Sunday", "open": "", "close": "", "closed": true }
+			],
+			"items": { "type": "object" }
+		},
+		"closures": { "type": "array", "default": [], "items": { "type": "object" } },
+		"showStatus": { "type": "boolean", "default": true },
+		"schema": { "type": "boolean", "default": true },
+		"businessType": { "type": "string", "default": "LocalBusiness" },
+		"phone": { "type": "string", "default": "" }
+	},
+	"supports": {
+		"html": false,
+		"spacing": { "margin": true, "padding": true },
+		"color": { "text": true, "background": true }
+	},
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
