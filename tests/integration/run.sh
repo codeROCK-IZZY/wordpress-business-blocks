@@ -29,7 +29,8 @@ bad() { echo "  FAIL  $1"; fail=1; }
 DEMO=$(curl -fsS "$SITE/blocks-demo/")
 PLAIN=$(curl -fsS "$SITE/plain-page/")
 # Here-strings, not "printf | grep -q": with pipefail an early grep exit can fail the pipe.
-grep -q 'id="business-blocks-faq-style-inline-css"' <<<"$DEMO" && ok "block styles load where blocks are used (inlined by WordPress, no extra request)" || bad "styles missing on the demo page"
+# WordPress 6.5 writes this attribute with single quotes, later versions with double quotes.
+grep -qE "id=[\"']business-blocks-faq-style-inline-css[\"']" <<<"$DEMO" && ok "block styles load where blocks are used (inlined by WordPress, no extra request)" || bad "styles missing on the demo page"
 grep -q 'business-hours/view.js' <<<"$DEMO" && grep -q 'id="business-blocks-business-hours-view-script-js"' <<<"$DEMO" && ok "the hours script loads, deferred, where the hours block is used" || bad "view script missing"
 grep -q 'business-blocks' <<<"$PLAIN" && bad "plugin assets on a page without blocks" || ok "nothing from the plugin on a page without blocks"
 grep -q 'business-blocks/build/blocks/faq/index.js' <<<"$DEMO" && bad "editor script on the front end" || ok "editor scripts never reach visitors"
